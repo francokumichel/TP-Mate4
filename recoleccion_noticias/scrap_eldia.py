@@ -39,35 +39,40 @@ def extraer_resultados():
         if href and "La Plata" in titulo and "inundación" in titulo.lower():
             resultados.add((titulo, href))
 
-# Extraemos resultados de la primera página
-extraer_resultados()
-
-# Recorremos las demás páginas
+# Recorremos las páginas dinámicamente
+pagina_actual = 1
 while True:
     try:
-        paginador = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.gsc-cursor-box")))
-        pagina_actual = paginador.find_element(By.CSS_SELECTOR, "div.gsc-cursor-current-page").text
+        print(f"Procesando página {pagina_actual}...")
 
-        paginas = paginador.find_elements(By.CSS_SELECTOR, "div.gsc-cursor-page")
-        proxima = None
-        for p in paginas:
-            if int(p.text) > int(pagina_actual):
-                proxima = p
-                break
-
-        if not proxima:
-            break  # Esto por si es la última página
-
-        # Guardar el primer título antes de hacer clic
-        titulos_antes = [n.text.strip() for n in driver.find_elements(By.CSS_SELECTOR, "a.gs-title") if n.text.strip()]
-        driver.execute_script("arguments[0].click();", proxima)
-
-        # Esperar hasta que el contenido cambie (comparando los títulos)
-        WebDriverWait(driver, 10).until(
-            lambda d: any(n.text.strip() not in titulos_antes for n in d.find_elements(By.CSS_SELECTOR, "a.gs-title"))
-        )
+        # Esperamos que haya resultados visibles
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.gsc-webResult")))
 
         extraer_resultados()
+
+        # Reobtener el paginador en cada iteración
+        paginador = driver.find_element(By.CSS_SELECTOR, "div.gsc-cursor-box")
+        paginas = paginador.find_elements(By.CSS_SELECTOR, "div.gsc-cursor-page")
+
+        # Buscar el botón de la siguiente página
+        siguiente = None
+        for p in paginas:
+            if p.text.strip() == str(pagina_actual + 1):
+                siguiente = p
+                break
+
+        if not siguiente:
+            print("Última página alcanzada.")
+            break
+
+        driver.execute_script("arguments[0].click();", siguiente)
+        pagina_actual += 1
+
+        # Esperar hasta que el contenido cambie
+        WebDriverWait(driver, 10).until(
+            lambda d: str(pagina_actual) in [e.text.strip() for e in d.find_elements(By.CSS_SELECTOR, "div.gsc-cursor-current-page")]
+        )
+        time.sleep(10)
 
     except Exception as e:
         print(f"Error al avanzar de página: {e}")
