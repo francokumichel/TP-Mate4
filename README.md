@@ -22,7 +22,7 @@ Este estudio analiza la evolución histórica de las precipitaciones en la ciuda
 ## Cómo ejecutar el proyecto
 
 ### 1. Requisitos previos
-Asegúrate de tener instalada una distribución de Python (recomendado Anaconda) o utiliza Google Colab.
+Asegúrate de tener instalada una distribución de Python o utiliza Google Colab.
 
 ### 2. Ejecución
 
@@ -48,9 +48,10 @@ El análisis se dividió en dos fases fundamentales:
         - PRCPTOT: $R^2 = 0.97$
         - RX1day: $R^2 = 0.82$
     
-    - Interdependencia: Los resultados demuestran que la intensidad de los eventos extremos puede explicarse casi en su totalidad por la combinación lineal de variables de frecuencia.
+    - Interdependencia: Los resultados demuestran que la intensidad de los eventos extremos puede explicarse casi en su totalidad por la combinación lineal de variables de intensidad, persistencia y frecuencia.
     
     - Complejidad en Persistencia: El bajo ajuste del índice CWD ($R^2 = 0.16$) revela que la duración de los periodos húmedos responde a dinámicas no lineales o factores meteorológicos más complejos (sinópticos) que no dependen puramente de la intensidad.
 
-**Autores**: Franco Leandro Kumichel & Juan Francisco Volpe Giangiordano
+**Autores**: [Franco Leando Kumichel](https://github.com/francokumichel), [Juan Francisco Volpe Giangiordano](https://github.com/JJuanVolpe)
+
 **Institución**: Facultad de Informática - Universidad Nacional de La Plata (UNLP)
