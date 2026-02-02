@@ -52,6 +52,13 @@ El análisis se dividió en dos fases fundamentales:
     
     - Complejidad en Persistencia: El bajo ajuste del índice CWD ($R^2 = 0.16$) revela que la duración de los periodos húmedos responde a dinámicas no lineales o factores meteorológicos más complejos (sinópticos) que no dependen puramente de la intensidad.
 
+## 🔮 Trabajo Futuro & Próximos Pasos
+Para profundizar en la comprensión del régimen hídrico de la región, se proponen las siguientes líneas de investigación:
+
+- **Modelado No Lineal:** Implementar modelos de Machine Learning para intentar capturar la variabilidad del índice **CWD**, que no pudo ser explicado satisfactoriamente por regresión lineal.
+- **Análisis de Teleconexiones:** Correlacionar los índices de precipitación con fenómenos macroclimáticos como el **ENSO** (El Niño-Oscilación del Sur) para identificar forzantes externos de los extremos.
+- **Despliegue de Dashboard:** Crear una aplicación interactiva para visualizar las series temporales y tendencias de forma dinámica.
+
 **Autores**: [Franco Leando Kumichel](https://github.com/francokumichel), [Juan Francisco Volpe Giangiordano](https://github.com/JJuanVolpe)
 
 **Institución**: Facultad de Informática - Universidad Nacional de La Plata (UNLP)
